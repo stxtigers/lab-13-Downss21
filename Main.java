@@ -7,18 +7,20 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		Integer[] a = new Integer[10];
-	    for(int i = 0; i < 10; i++)
-	    {
-	      a[i] = (int)(Math.random()*100);
-	    }
-	    System.out.println(Arrays.toString(a));
-	    System.out.println(Arrays.toString(delete(2, a, 10)));
+		System.exit(42);
+		Integer[] list = {null, 10, null, null, 10, 20, 30, null, null};
+		String[] listA = {"blah", null, null, "aaaaa", "demoknight tf2"};
+	    System.out.println(Arrays.toString(list));
+	    System.out.println(Arrays.toString((list)));
+	    System.out.println(Arrays.toString(delete(3, listA)));
 	    stats("input");
 	}
 	
-	public static <T> T[] insert(T insertion, int index, T[] list, int logicalSize)
+	//as long as objects(Strings) are used to test these they will automatically infer the type needed so I won't add anything for primatives
+	
+	public static <T> T[] insert(T insertion, int index, T[] list)
 	{
+		@SuppressWarnings("unchecked")
 		T[] newList = (T[]) new Object[list.length + 1];
 		for (int i = list.length; i > index; i--)
 		{
@@ -33,8 +35,9 @@ public class Main {
 		return newList;
 	}
 	
-	public static <T> T[] delete(int index, T[] list, int logicalSize)
+	public static <T> T[] delete(int index, T[] list)
 	{
+		@SuppressWarnings("unchecked")
 		T[] newList = (T[]) new Object[list.length - 1];
 		for (int i = 0; i < index; i++)
 		{
@@ -87,8 +90,22 @@ public class Main {
 		writer.close();
 	}
 	
-	public static <T> T[] removeNull(T[]) {
+	public static <T> T[] removeNulls(T[] list)
+	{
+		int j = 0;
+		@SuppressWarnings("unchecked")
+		T[] newList = (T[])new Object[list.length];
 		
+		for (int i = 0; i < list.length; i++)
+		{
+			T item = list[i];
+			if (item != null)
+			{
+				newList[j] = item;
+				j++;
+			}
+		}
+		return newList;
 	}
 	
 	private static double stdev(double[] list, double mean) {
